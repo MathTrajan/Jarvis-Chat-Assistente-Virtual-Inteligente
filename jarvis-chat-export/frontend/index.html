@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jarvis — Seu assistente virtual inteligente" />
+  <title>Jarvis — Assistente Virtual</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="app-container">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="agent-avatar">
+          <div class="avatar-ring"></div>
+          
+          <div class="avatar-core">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          
+          <div class="avatar-pulse"></div>
+        </div>
+        <div class="agent-info">
+          <h1 class="agent-name">JARVIS</h1>
+          <p class="agent-subtitle">Assistente Virtual</p>
+        </div>
+      </div>
+
+      <div class="system-status">
+        <div class="status-title">STATUS DO SISTEMA</div>
+        <div class="status-item" id="status-groq">
+          <span class="status-dot status-checking"></span>
+          <span class="status-label">Groq</span>
+          <span class="status-value" id="groq-status-text">Verificando…</span>
+        </div>
+        <div class="status-item" id="status-gemini">
+          <span class="status-dot status-checking"></span>
+          <span class="status-label">Gemini</span>
+          <span class="status-value" id="gemini-status-text">Verificando…</span>
+        </div>
+      </div>
+
+      <div class="sidebar-config">
+        <div class="config-title">CONFIGURAÇÕES</div>
+        <div class="config-item">
+          <label for="routing-select" class="config-label">Roteamento</label>
+          <select id="routing-select" class="config-select">
+            <option value="auto">Auto (Groq → Gemini)</option>
+            <option value="groq">Sempre Groq</option>
+            <option value="gemini">Sempre Gemini</option>
+            <option value="round-robin">Round-Robin</option>
+          </select>
+        </div>
+        <div class="config-item">
+          <label for="temperature-slider" class="config-label">
+            Criatividade: <span id="temperature-value">0.7</span>
+          </label>
+          <input
+            type="range"
+            id="temperature-slider"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.7"
+            class="config-slider"
+          />
+        </div>
+      </div>
+
+      <div class="sidebar-actions">
+        <button class="btn-action btn-clear" id="btn-clear-chat" title="Limpar conversa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6l-1 14H6L5 6"></path>
+            <path d="M10 11v6M14 11v6"></path>
+            <path d="M9 6V4h6v2"></path>
+          </svg>
+          Limpar conversa
+        </button>
+      </div>
+
+      <div class="provider-badge" id="provider-badge">
+        <span class="provider-icon">⚡</span>
+        <span id="provider-text">Aguardando…</span>
+      </div>
+    </aside>
+
+    <main class="chat-main">
+
+      <header class="chat-header">
+        <button class="btn-menu-toggle" id="btn-menu-toggle" title="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <div class="chat-header-info">
+          <div class="chat-header-title">
+            <span class="online-indicator"></span>
+            Conversando com Jarvis
+          </div>
+          <div class="chat-header-sub" id="chat-header-sub">Pronto para ajudar</div>
+        </div>
+        <div class="chat-header-meta">
+          <span class="msg-counter" id="msg-counter">0 mensagens</span>
+        </div>
+      </header>
+
+      <section class="messages-area" id="messages-area" role="log" aria-live="polite">
+
+        <div class="welcome-screen" id="welcome-screen">
+          <div class="welcome-avatar">
+            <div class="avatar-ring"></div>
+            
+            <div class="avatar-core large">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            
+            <div class="avatar-pulse"></div>
+          </div>
+          <h2 class="welcome-title">Olá, eu sou o Jarvis</h2>
+          <p class="welcome-desc">
+            Seu assistente virtual inteligente. Posso ajudar com análises, código,
+            escrita, pesquisas e muito mais. Como posso te ajudar hoje?
+          </p>
+          
+          <div class="quick-suggestions" id="quick-suggestions">
+            <button class="suggestion-btn" data-msg="Explique o que é inteligência artificial de forma simples">
+              💡 O que é Inteligência Artificial?
+            </button>
+            <button class="suggestion-btn" data-msg="Escreva um script Python para listar arquivos em um diretório">
+              💻 Exemplo de código Python
+            </button>
+            <button class="suggestion-btn" data-msg="Crie um resumo executivo sobre as tendências de tecnologia em 2025">
+              📊 Tendências de tecnologia
+            </button>
+            <button class="suggestion-btn" data-msg="Como posso melhorar minha produtividade no trabalho?">
+              🚀 Dicas de produtividade
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <div class="typing-indicator" id="typing-indicator" hidden>
+        <div class="typing-avatar">J</div>
+        <div class="typing-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="typing-text">Jarvis está processando…</span>
+      </div>
+
+      <footer class="input-area">
+        <div class="input-container">
+          <textarea
+            id="message-input"
+            class="message-input"
+            placeholder="Digite uma mensagem para o Jarvis…"
+            rows="1"
+            maxlength="8000"
+          ></textarea>
+          <div class="input-actions">
+            <span class="char-counter" id="char-counter">0/8000</span>
+            <button id="send-button" class="send-button" title="Enviar mensagem" disabled>
+              <svg class="send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <svg class="loading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden>
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
