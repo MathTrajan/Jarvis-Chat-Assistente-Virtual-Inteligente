@@ -1,6 +1,6 @@
-# 🤖 Jarvis Chat — Assistente Virtual Inteligente
+# 🤖 J.A.R.V.I.S Chat — Assistente Virtual Inteligente
 
-O **Jarvis** é um agente de IA de alto desempenho, desenvolvido para oferecer uma interface de chat moderna, rápida e intuitiva. O projeto utiliza uma arquitetura híbrida de modelos de linguagem (LLMs), permitindo alternância inteligente entre provedores para garantir a melhor resposta.
+O **J.A.R.V.I.S** é um agente de IA de alto desempenho, desenvolvido para oferecer uma interface de chat moderna, rápida e intuitiva. O projeto utiliza uma arquitetura híbrida de modelos de linguagem (LLMs), permitindo alternância inteligente entre provedores para garantir a melhor resposta.
 
 ## 🚀 Demonstração Online
 Confira o agente em execução: [https://jarvis-assistente.onrender.com](https://jarvis-assistente.onrender.com)
