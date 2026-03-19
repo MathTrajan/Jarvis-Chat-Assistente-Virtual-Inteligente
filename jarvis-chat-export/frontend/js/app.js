@@ -1,6 +1,6 @@
 /**
  * ============================================================
- * JARVIS CHAT — Frontend (app.js) — VERSÃO MASTER CORRIGIDA
+ * J.A.R.V.I.S CHAT — Frontend (app.js) — VERSÃO MASTER CORRIGIDA
  * ============================================================
  * Atualizado em: 18/03/2026
  * Correções: Status IDs (Case Insensitive), Botão de Envio,
@@ -57,7 +57,7 @@ function setLoading(loading) {
         if (DOM.sendIcon()) DOM.sendIcon().hidden = true;
         if (DOM.loadingIcon()) DOM.loadingIcon().hidden = false;
         if (DOM.typingIndicator()) DOM.typingIndicator().hidden = false;
-        DOM.chatHeaderSub().textContent = "Jarvis está processando...";
+        DOM.chatHeaderSub().textContent = "J.A.R.V.I.S está processando...";
     } else {
         button.disabled = input.value.trim().length === 0;
         if (DOM.sendIcon()) DOM.sendIcon().hidden = false;

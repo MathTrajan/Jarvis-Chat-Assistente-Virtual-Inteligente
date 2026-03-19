@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   JARVIS CHAT — Estilos Principais
+   J.A.R.V.I.S CHAT — Estilos Principais
    Design: Dark Theme inspirado em interfaces de alta tecnologia
    ═══════════════════════════════════════════════════════════════ */
 
@@ -20,7 +20,7 @@
   --color-border:       #1e2a42;
   --color-border-light: #2a3a58;
 
-  /* Cores de destaque (azul elétrico do Jarvis) */
+  /* Cores de destaque (azul elétrico do J.A.R.V.I.S) */
   --color-accent:       #00c2ff;
   --color-accent-2:     #0090cc;
   --color-accent-glow:  rgba(0, 194, 255, 0.15);
@@ -628,7 +628,7 @@ body {
   box-shadow: 0 2px 12px rgba(0, 144, 204, 0.3);
 }
 
-/* Bolha do Jarvis */
+/* Bolha do J.A.R.V.I.S */
 .message-wrapper.assistant .message-bubble {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
