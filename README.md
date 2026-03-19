@@ -21,7 +21,7 @@ Confira o agente em execução: [https://jarvis-assistente.onrender.com](https:/
 ## 🔧 Como Rodar Localmente
 1.  Clone o repositório:
     ```bash
-    git clone [https://github.com/MathTrajan/jarvis-ai.git](https://github.com/MathTrajan/jarvis-ai.git)
+    git clone https://github.com/MathTrajan/Jarvis-Chat-Assistente-Virtual-Inteligente.git
     ```
 2.  Entre na pasta do backend:
     ```bash
